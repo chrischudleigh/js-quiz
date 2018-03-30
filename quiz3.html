@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  manifest="quiz.appcache">
+<head>
+    <title>Welcome to the Web Quiz</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="120x120" href="quiz-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Quiz" />
+    <script src="ajax.js"></script>
+    <script src="jquery-1.7.js"></script>
+    <script src="cookie.js"></script>
+    <script src="hb.js"></script>
+    <script src="hb-ext.js"></script>
+    <script src="fastclick.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+     #main {margin:1em auto;width:82%;border:1px solid #ccc;padding:1em;box-shadow: 5px 5px 3px #888888;border-radius:5px;}
+     .incorrect{color:#f00;}
+	 .correct{color:#070;}
+	 .radio {padding-left: 21px;}
+    </style>
+    <script>
+	window.addEventListener('load', function() {
+    new FastClick(document.body);
+}, false);
+</script>
+</head>
+<body>
+<div id="main">
+<h4>Welcome to the Web Quiz</h4>
+
+<form id="nameForm" name="nameForm" class="form-inline">
+   <div id="welcome">
+       <div id="message" class="alert alert-info"></div>
+        <input type="text" id="name" style="font-size:16px"><button id="addName" type="button" >Go!</button>
+   </div>
+</form>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab" >CSS</a></li>
+    <li><a href="#tab1" data-toggle="tab">HTML</a></li>
+    <li><a href="#tab2" data-toggle="tab">JS</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="home">
+        <form id="quiz1Form" name="quiz1Form">
+            <div class="quiz">
+                <div class="quizMessage"></div>
+                <div class="quizError alert alert-danger"></div>
+                <div class="quizQuestion"></div>
+                <div class="quizAnswers"></div>
+                <button class="myBack btn" type="button" style="margin-right:2px;"></button><button type="button" class="myAction btn"></button>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane" id="tab1">
+        <form id="quiz2Form" name="quiz2Form">
+            <div class="quiz">
+                <div class="quizMessage"></div>
+                <div class="quizError alert alert-danger"></div>
+                <div class="quizQuestion"></div>
+                <div class="quizAnswers"></div>
+                <button class="myBack btn" type="button"></button>&nbsp;<button type="button" class="myAction btn"></button>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane" id="tab2">
+        <form id="quiz3Form" name="quiz3Form">
+            <div class="quiz">
+                <div class="quizMessage"></div>
+                <div class="quizError alert alert-danger"></div>
+                <div class="quizQuestion"></div>
+                <div class="quizAnswers"></div>
+                <button class="myBack btn" type="button"></button>&nbsp;<button type="button" class="myAction btn"></button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<script id="qtn-template" type="text/x-handlebars-template">
+   <p><strong>Qtn {{number}} of {{arrayLength}}</strong></p><p><strong>{{question}}</strong></p>
+    {{#each choices}}
+    <label class='radio'><input type='radio' value={{@index}} name='myAnswer' id='qtn{{../number}}c{{@index}}' {{isChecked @index ../userChoice }}>{{letterQtn @index}}. {{this}}</label>
+    {{/each}}
+</script>
+<script id="score-template" type="text/x-handlebars-template">
+    <p><strong>Thanks for completing the quiz.</p><p>You scored {{this}} out of a possible {{arrayLength}}.</strong> </p>
+</script>
+<script id="results-template" type="text/x-handlebars-template">
+    <ul style="list-style-type:none;padding-left:0;margin-left:0;">
+    {{#each qtns}}
+    <li><p {{isCorrect userChoice correctAnswer}}>Qtn {{number}}. You chose {{letterChoice userChoice}}. Correct answer was {{letterChoice correctAnswer}}.</p></li>
+    {{/each}}
+    </ul>
+</script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="quizoo2.js"></script>
+</body>
+</html>

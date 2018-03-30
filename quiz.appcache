@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# updated 1pm 5/12/2014 
+CACHE:
+quizoo2.js
+questions-new.json
+quiz-icon.png
+hb-ext.js
+cookie.js
+ajax.js
+hb.js
+jquery-1.7.js
+bootstrap/js/bootstrap.min.js
+bootstrap/img/glyphicons-halflings.png
+bootstrap/img/glyphicons-halflings-white.png
+bootstrap/css/bootstrap.min.css
+NETWORK:
+*
